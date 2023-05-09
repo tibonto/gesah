@@ -16,3 +16,5 @@ A first version will be released soon.
 ## Cite this ontology
 An ontology paper is in preparation. Until then you can cite this ontology as:
 > Rubach, Birte; Walther, Tatiana (2023): GESAH Graphic Art Ontology. https://github.com/tibonto/gesah
+
+## to do
