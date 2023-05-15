@@ -11,7 +11,7 @@ tbd.
 tbd. 
 
 ## Versions
-The first version - 2023-05-15. 
+* [2023-05-15](https://github.com/tibonto/gesah/releases/tag/v2023-05-15)
 
 ## Cite this ontology
 An ontology paper is in preparation. Until then you can cite this ontology as:
