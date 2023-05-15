@@ -11,7 +11,7 @@ tbd.
 tbd. 
 
 ## Versions
-A first version will be released soon. 
+The first version - 2023-05-15. 
 
 ## Cite this ontology
 An ontology paper is in preparation. Until then you can cite this ontology as:
