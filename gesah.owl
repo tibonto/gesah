@@ -38,7 +38,7 @@
                                  rdfs:label "GESAH Graphic Arts Ontology"@en-US ;
                                  owl:versionInfo "2023-05-15" ;
                                  foaf:fundedBy "https://doi.org/10.13039/501100001659" ;
-                                 foaf:mbox "sammlung.haupt"@tib.eu ;
+                                 foaf:mbox "sammlung.haupt@tib.eu" ;
                                  <https://schema.org/audience> "ontology-, software engineers, developers in digitial humanities, art historians, architects, curators, public" ;
                                  <https://w3id.org/mod#acronym> "gesah" .
 
