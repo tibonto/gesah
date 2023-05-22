@@ -16,14 +16,15 @@ The ontology can be used to
 
 ## Competency Questions
 Probably questions that can be answered by GESAH Graphic Arts Ontology:
-Which German prints from before 1600 are part of  the collection?
-Which Italian architectural drawings can be found in the collection?
-Which prints were issued in Antwerp?
-Which drawings were formerly attributed to Parmigianino?
-Which drawings and prints have a collector`s mark?
-Which drawings and prints were kept in the Collection of Hippolyte Destailleur (Paris)?
-Which drawings were kept under the former/current inventory no. (e.g. Albrecht Haupt’s folder numbered e.g. “XXXIIIa”)?
-Which drawings and prints depict the subject Adam and Eve? 
+
+- Which German prints from before 1600 are part of  the collection?
+- Which Italian architectural drawings can be found in the collection?
+- Which prints were issued in Antwerp?
+- Which drawings were formerly attributed to Parmigianino?
+- Which drawings and prints have a collector`s mark?
+- Which drawings and prints were kept in the Collection of Hippolyte Destailleur (Paris)?
+- Which drawings were kept under the former/current inventory no. (e.g. Albrecht Haupt’s folder numbered e.g. “XXXIIIa”)?
+- Which drawings and prints depict the subject Adam and Eve? 
 
 ## Versions
 * [2023-05-15](https://github.com/tibonto/gesah/releases/tag/v2023-05-15)
