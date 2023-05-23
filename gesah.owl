@@ -545,7 +545,7 @@ foaf:mbox rdf:type owl:AnnotationProperty .
 :has_participant rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf obo:RO_0000057 ;
                  owl:inverseOf :participates_in ;
-                 rdfs:domain :Activitiy ;
+                 rdfs:domain :Activity ;
                  rdfs:range foaf:Agent ;
                  rdfs:comment "The relationship connects the an activity to a person or organisation."@en-US ;
                  rdfs:label "Teilnehmer"@de-DE ,
@@ -1121,7 +1121,7 @@ foaf:mbox rdf:type owl:AnnotationProperty .
 :participates_in rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf obo:RO_0000056 ;
                  rdfs:domain foaf:Agent ;
-                 rdfs:range :Activitiy ;
+                 rdfs:range :Activity ;
                  rdfs:comment "The relationship connects a person or organisation with all activities (without role)."@en-US ;
                  rdfs:label "beteiligt an"@de-DE ,
                             "participates in"@en-US .
@@ -1132,7 +1132,7 @@ foaf:mbox rdf:type owl:AnnotationProperty .
              rdfs:subPropertyOf obo:BFO_0000054 ;
              owl:inverseOf :realizes ;
              rdfs:domain obo:BFO_0000023 ;
-             rdfs:range :Activitiy ;
+             rdfs:range :Activity ;
              rdfs:label "realisiert in"@de-DE ,
                         "realized in"@en-US .
 
@@ -1140,7 +1140,7 @@ foaf:mbox rdf:type owl:AnnotationProperty .
 ###  http://ontology.tib.eu/gesah/realizes
 :realizes rdf:type owl:ObjectProperty ;
           rdfs:subPropertyOf obo:BFO_0000055 ;
-          rdfs:domain :Activitiy ;
+          rdfs:domain :Activity ;
           rdfs:range obo:BFO_0000023 ;
           rdfs:comment "The relationship connects an activity with the role realized during the activity."@en-US ;
           rdfs:label "realisiert"@de-DE ,
@@ -1510,7 +1510,7 @@ vivo:start rdf:type owl:ObjectProperty .
 
 ###  http://ontology.tib.eu/gesah/literal_date_appellation
 :literal_date_appellation rdf:type owl:DatatypeProperty ;
-                          rdfs:domain :Activitiy ;
+                          rdfs:domain :Activity ;
                           rdfs:range xsd:string ;
                           rdfs:label "Literal date appellation"@en-US ,
                                      "Verbale Datierung"@de-DE .
@@ -1703,8 +1703,8 @@ ecrm:E35_Title rdf:type owl:Class ;
                           "Title"@en-US .
 
 
-###  http://ontology.tib.eu/gesah/Activitiy
-:Activitiy rdf:type owl:Class ;
+###  http://ontology.tib.eu/gesah/Activity
+:Activity rdf:type owl:Class ;
            rdfs:subClassOf obo:BFO_0000015 ;
            rdfs:comment "Activities describe the actions and measures a cultural object is subjected to and which affects its existance, its appearance, its condition, or its location."@en-US ;
            rdfs:label "Activity"@en-US ,
@@ -1771,7 +1771,7 @@ ecrm:E35_Title rdf:type owl:Class ;
 
 ###  http://ontology.tib.eu/gesah/Creation
 :Creation rdf:type owl:Class ;
-          rdfs:subClassOf :Activitiy ,
+          rdfs:subClassOf :Activity ,
                           [ rdf:type owl:Restriction ;
                             owl:onProperty :has_material ;
                             owl:allValuesFrom :Material
@@ -1898,7 +1898,7 @@ ecrm:E35_Title rdf:type owl:Class ;
 
 ###  http://ontology.tib.eu/gesah/Edition
 :Edition rdf:type owl:Class ;
-         rdfs:subClassOf :Activitiy ;
+         rdfs:subClassOf :Activity ;
          rdfs:comment "A (printed) cultural object is edited by a person at a certain time at a certain place."@en-US ;
          rdfs:label "Edition"@en-US ,
                     "Herausgabe"@de-DE ;
@@ -1986,7 +1986,7 @@ ecrm:E35_Title rdf:type owl:Class ;
 
 ###  http://ontology.tib.eu/gesah/Inscription_Activity
 :Inscription_Activity rdf:type owl:Class ;
-                      rdfs:subClassOf :Activitiy ;
+                      rdfs:subClassOf :Activity ;
                       rdfs:comment "A cultural object is inscribed by a person with annotations, marks, numbers, etc."@en-US ;
                       rdfs:label "Aktivität Beschriftung"@de-DE ,
                                  "Inscription activity"@en-US .
@@ -2146,7 +2146,7 @@ ecrm:E35_Title rdf:type owl:Class ;
 
 ###  http://ontology.tib.eu/gesah/Preservation_Activity
 :Preservation_Activity rdf:type owl:Class ;
-                       rdfs:subClassOf :Activitiy ;
+                       rdfs:subClassOf :Activity ;
                        rdfs:comment "A cultural object undergoes treatments of collection care."@en-US ;
                        rdfs:label "Collection care"@en-US ,
                                   "Erhaltungsmaßnahme"@de-DE ;
@@ -2190,7 +2190,7 @@ ecrm:E35_Title rdf:type owl:Class ;
 
 ###  http://ontology.tib.eu/gesah/Production
 :Production rdf:type owl:Class ;
-            rdfs:subClassOf :Activitiy ,
+            rdfs:subClassOf :Activity ,
                             [ rdf:type owl:Restriction ;
                               owl:onProperty :has_material ;
                               owl:allValuesFrom :Material
@@ -2212,7 +2212,7 @@ ecrm:E35_Title rdf:type owl:Class ;
 
 ###  http://ontology.tib.eu/gesah/Provenance
 :Provenance rdf:type owl:Class ;
-            rdfs:subClassOf :Activitiy ;
+            rdfs:subClassOf :Activity ;
             rdfs:comment "A cultural object is subjected to change of custody or location."@en-US ;
             rdfs:label "Provenance"@en-US ,
                        "Provenienz"@de-DE ;
