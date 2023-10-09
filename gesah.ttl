@@ -18,26 +18,27 @@
 
 <http://ontology.tib.eu/gesah/> rdf:type owl:Ontology ;
                                  owl:versionIRI <http://ontology.tib.eu/gesah/1.0/2023-05-15/> ;
-                                 dc:contributor "Christian Hauschke" ,
-                                                "Georgy Litvinov" ,
-                                                "Graham Triggs" ,
-                                                "Hedda Seemann" ,
-                                                "Simon Paulus" ;
-                                 dcterms:creator "Birte Rubach" ,
-                                                 "Tatiana Walther" ;
+                                 dc:contributor <https://orcid.org/0000-0003-2499-7741> ,
+                                                <https://orcid.org/0000-0001-5410-5674> ,
+                                                <https://orcid.org/0000-0001-8530-8917> ,
+                                                <https://orcid.org/0000-0003-3679-145X> ,
+                                                <https://orcid.org/0000-0002-9591-3800> ;
+                                 dcterms:creator <https://orcid.org/0000-0001-5319-0221> ,
+                                                 <https://orcid.org/0000-0001-8127-2988> ;
                                  dcterms:description "The GESAH Graphic Arts Ontology is designed for the inventory, classification and structured description of works on paper."@en-US ;
-                                 dcterms:language "https://id.loc.gov/vocabulary/iso639-2/eng" ,
-                                                  "https://id.loc.gov/vocabulary/iso639-2/ger" ;
-                                 dcterms:rights "https://creativecommons.org/licenses/by/4.0/" ;
-                                 dcterms:subject "https://github.com/tibonto/dfgfo/103-01" ,
-                                                 "https://github.com/tibonto/dfgfo/410-01" ;
+                                 dcterms:language <https://id.loc.gov/vocabulary/iso639-2/eng> ,
+                                                  <https://id.loc.gov/vocabulary/iso639-2/ger> ;
+                                 dcterms:rights <https://creativecommons.org/licenses/by/4.0/> ;
+                                 dcterms:subject <https://github.com/tibonto/dfgfo/103-01> ,
+                                                 <https://github.com/tibonto/dfgfo/410-01> ;
                                  dcterms:title "GESAH Graphic Arts Ontology"@en-US ;
                                  <http://purl.org/vocab/vann/preferredNamespacePrefix> "gesah" ;
                                  <http://usefulinc.com/ns/doap#repository> "https://github.com/tibonto/gesah" ;
                                  vitro:ontologyPrefixAnnot "gesah" ;
                                  rdfs:label "GESAH Graphic Arts Ontology"@en-US ;
+                                 dcterms:created "2023-05-15"
                                  owl:versionInfo "2023-05-15" ;
-                                 foaf:fundedBy "https://doi.org/10.13039/501100001659" ;
+                                 foaf:fundedBy <https://doi.org/10.13039/501100001659> ;
                                  foaf:mbox "sammlung.haupt@tib.eu" ;
                                  <https://schema.org/audience> "ontology-, software engineers, developers in digitial humanities, art historians, architects, curators, public"@en-US ;
                                  <https://w3id.org/mod#acronym> "gesah" .
