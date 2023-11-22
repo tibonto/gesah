@@ -36,8 +36,8 @@
                                  <http://usefulinc.com/ns/doap#repository> "https://github.com/tibonto/gesah" ;
                                  vitro:ontologyPrefixAnnot "gesah" ;
                                  rdfs:label "GESAH Graphic Arts Ontology"@en-US ;
-                                 dcterms:created "2023-05-15" ;
-                                 owl:versionInfo "2023-05-15" ;
+                                 dcterms:created "2023-05-15"^^xsd:dateTime ;
+                                 owl:versionInfo "2023-05-15"^^xsd:dateTime ;
                                  foaf:fundedBy <https://doi.org/10.13039/501100001659> ;
                                  foaf:mbox "sammlung.haupt@tib.eu" ;
                                  <https://schema.org/audience> "ontology-, software engineers, developers in digitial humanities, art historians, architects, curators, public"@en-US ;
