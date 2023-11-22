@@ -34,7 +34,7 @@
                                  dcterms:title "GESAH Graphic Arts Ontology"@en-US ;
                                  <http://purl.org/vocab/vann/preferredNamespacePrefix> "gesah" ;
                                  <http://usefulinc.com/ns/doap#repository> "https://github.com/tibonto/gesah" ;
-                                 <http://usefulinc.com/ns/doap#bug-database> "https://github.com/tibonto/gesah/issues" ; 
+                                 <http://usefulinc.com/ns/doap#bug-database> <https://github.com/tibonto/gesah/issues> ; 
                                  vitro:ontologyPrefixAnnot "gesah" ;
                                  rdfs:label "GESAH Graphic Arts Ontology"@en-US ;
                                  dcterms:created "2023-05-15"^^xsd:dateTime ;
