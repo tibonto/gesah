@@ -2158,7 +2158,11 @@ ecrm:E35_Title rdf:type owl:Class ;
 
 ###  http://ontology.tib.eu/gesah/Preservation_Measure_Specifics
 :Preservation_Measure_Specifics rdf:type owl:Class ;
-                                rdfs:subClassOf :Feature ;
+                                rdfs:subClassOf :Feature ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty :AAT_ID ;
+                                                 owl:allValuesFrom xsd:string
+                                               ] ;
                                 rdfs:comment "Measures undertaken concerning preservation, conservation and restoration of a cultural object"@en-US ;
                                 rdfs:label "Spezifika der Erhaltungsmaßnahme"@de-DE ,
                                            "Treatment specifics"@en-US .
