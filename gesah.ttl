@@ -17,12 +17,13 @@
 @base <http://ontology.tib.eu/gesah/> .
 
 <http://ontology.tib.eu/gesah/> rdf:type owl:Ontology ;
-                                 owl:versionIRI <http://ontology.tib.eu/gesah/1.0/2023-05-15/> ;
-                                 dc:contributor <https://orcid.org/0000-0003-2499-7741> ,
-                                                <https://orcid.org/0000-0001-5410-5674> ,
+                                 owl:versionIRI <http://ontology.tib.eu/gesah/1.0/2024-01-08/> ;
+                                 dc:contributor <https://orcid.org/0000-0001-5410-5674> ,
                                                 <https://orcid.org/0000-0001-8530-8917> ,
-                                                <https://orcid.org/0000-0003-3679-145X> ,
-                                                <https://orcid.org/0000-0002-9591-3800> ;
+                                                <https://orcid.org/0000-0002-9591-3800> ,
+                                                <https://orcid.org/0000-0003-2499-7741> ,
+                                                <https://orcid.org/0000-0003-3679-145X> ;
+                                 dcterms:created "2023-05-15"^^xsd:dateTime ;
                                  dcterms:creator <https://orcid.org/0000-0001-5319-0221> ,
                                                  <https://orcid.org/0000-0001-8127-2988> ;
                                  dcterms:description "The GESAH Graphic Arts Ontology is designed for the inventory, classification and structured description of works on paper."@en-US ;
@@ -34,12 +35,11 @@
                                  dcterms:title "GESAH Graphic Arts Ontology"@en-US ;
                                  <http://purl.org/vocab/vann/preferredNamespacePrefix> "gesah" ;
                                  <http://usefulinc.com/ns/doap#repository> "https://github.com/tibonto/gesah" ;
-                                 <http://www.loc.gov/premis/rdf/v3/documentation> <https://github.com/tibonto/gesah/blob/main/README.md> ; 
+								 <http://www.loc.gov/premis/rdf/v3/documentation> <https://github.com/tibonto/gesah/blob/main/README.md> ; 
                                  <http://usefulinc.com/ns/doap#bug-database> <https://github.com/tibonto/gesah/issues> ; 
                                  vitro:ontologyPrefixAnnot "gesah" ;
                                  rdfs:label "GESAH Graphic Arts Ontology"@en-US ;
-                                 dcterms:created "2023-05-15"^^xsd:dateTime ;
-                                 owl:versionInfo "2023-05-15"^^xsd:dateTime ;
+                                 owl:versionInfo "Version from 2024-01-08, added domain unions."@en-US ;
                                  foaf:fundedBy <https://doi.org/10.13039/501100001659> ;
                                  foaf:mbox "sammlung.haupt@tib.eu" ;
                                  <https://schema.org/audience> "ontology-, software engineers, developers in digitial humanities, art historians, architects, curators, public"@en-US ;
@@ -51,6 +51,10 @@
 
 ###  http://purl.org/dc/elements/1.1/contributor
 dc:contributor rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/created
+dcterms:created rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/terms/creator
@@ -310,10 +314,11 @@ foaf:mbox rdf:type owl:AnnotationProperty .
                                  rdfs:subPropertyOf obo:RO_0001025 ;
                                  owl:inverseOf :is_current_holding_institution_of ;
                                  rdfs:domain :Cultural_Object ;
-                                 rdfs:range foaf:Organization ;
-                                 rdfs:comment "The relationship connects the cultural object and the institution that keeps it."@en-US ;
+								 rdfs:range foaf:Organization ;
+								 rdfs:comment "The relationship connects the cultural object and the institution that keeps it."@en-US ;
                                  rdfs:label "Current holding institution"@en-US ,
                                             "aktuell aufbewahrende Institution"@de-DE .
+                                 
 
 
 ###  http://ontology.tib.eu/gesah/has_degree_of_recording
@@ -459,6 +464,12 @@ foaf:mbox rdf:type owl:AnnotationProperty .
 ###  http://ontology.tib.eu/gesah/has_material
 :has_material rdf:type owl:ObjectProperty ;
               owl:inverseOf :incorporated_in ;
+              rdfs:domain [ rdf:type owl:Class ;
+                            owl:unionOf ( :Creation
+                                          :Edition
+                                          :Production
+                                        )
+                          ] ;
               rdfs:range :Material ;
               rdfs:comment "The relationship serves to connect the cultural object to the material used for creation, production or edition."@en-US ;
               rdfs:label "Material"@de-DE ,
@@ -664,6 +675,12 @@ foaf:mbox rdf:type owl:AnnotationProperty .
 ###  http://ontology.tib.eu/gesah/has_type_of_attribution
 :has_type_of_attribution rdf:type owl:ObjectProperty ;
                          owl:inverseOf :is_attribution_type_of ;
+                         rdfs:domain [ rdf:type owl:Class ;
+                                       owl:unionOf ( :Creation
+                                                     :Edition
+                                                     :Production
+                                                   )
+                                     ] ;
                          rdfs:range :Attribution_Type ;
                          rdfs:comment "The relationship connects the role with the type of attribution to specify the person's secured or unsecured participation."@en-US ;
                          rdfs:label "Art der Zuschreibung"@de-DE ,
@@ -811,7 +828,7 @@ foaf:mbox rdf:type owl:AnnotationProperty .
 ###  http://ontology.tib.eu/gesah/is_location_of
 :is_location_of rdf:type owl:ObjectProperty ;
                 rdfs:subPropertyOf obo:RO_0001015 ;
-                owl:inverseOf :located_in ;
+                owl:inverseOf :located_in  ;
                 rdfs:range foaf:Organization ;
                 rdfs:comment "The relationship connects places with organizations."@en-US ;
                 rdfs:label "Ort von"@de-DE ,
@@ -1213,6 +1230,12 @@ foaf:mbox rdf:type owl:AnnotationProperty .
 
 ###  http://ontology.tib.eu/gesah/uses_technique
 :uses_technique rdf:type owl:ObjectProperty ;
+                rdfs:domain [ rdf:type owl:Class ;
+                              owl:unionOf ( :Creation
+                                            :Edition
+                                            :Production
+                                          )
+                            ] ;
                 rdfs:range :Technique ;
                 rdfs:comment "The relationship connects the cultural object with the technique by which it was made."@en-US ;
                 rdfs:label "uses technique"@en-US ,
@@ -1303,6 +1326,23 @@ vivo:start rdf:type owl:ObjectProperty .
 ###  http://ontology.tib.eu/gesah/AAT_ID
 :AAT_ID rdf:type owl:DatatypeProperty ;
         rdfs:subPropertyOf :identifier ;
+        rdfs:domain [ rdf:type owl:Class ;
+                      owl:unionOf ( :Attribution_Type
+                                    :Depicted_Object
+                                    :Depiction_Type
+                                    :Geographic_Assingment
+                                    :Inscription_Type
+                                    :Material
+                                    :Measurement_Specification
+                                    :Object_Category_Generic_Term
+                                    :Object_Category_Narrower_Term
+                                    :Preservation_Measure_Specifics
+                                    :Role_Type
+                                    :Stylistic_Assignment
+                                    :Technique
+                                    :Title_Type
+                                  )
+                    ] ;
         rdfs:range xsd:string ;
         rdfs:label "AAT ID"@en-US ,
                    "AAT-ID"@de-DE .
@@ -1311,6 +1351,11 @@ vivo:start rdf:type owl:ObjectProperty .
 ###  http://ontology.tib.eu/gesah/CONA_ID
 :CONA_ID rdf:type owl:DatatypeProperty ;
          rdfs:subPropertyOf :identifier ;
+         rdfs:domain [ rdf:type owl:Class ;
+                       owl:unionOf ( ecrm:E35_Title
+                                     :Cultural_Object
+                                   )
+                     ] ;
          rdfs:range xsd:string ;
          rdfs:label "CONA ID"@en-US ,
                     "CONA-ID"@de-DE .
@@ -1319,6 +1364,15 @@ vivo:start rdf:type owl:ObjectProperty .
 ###  http://ontology.tib.eu/gesah/GND_ID
 :GND_ID rdf:type owl:DatatypeProperty ;
         rdfs:subPropertyOf :identifier ;
+        rdfs:domain [ rdf:type owl:Class ;
+                      owl:unionOf ( ecrm:E35_Title
+                                    :Cultural_Object
+                                    :Iconography
+                                    :Object_Category_Generic_Term
+                                    :Object_Category_Narrower_Term
+                                    foaf:Agent
+                                  )
+                    ] ;
         rdfs:range xsd:string ;
         rdfs:label "GND ID"@en-US ,
                    "GND-ID"@de-DE .
@@ -1345,6 +1399,7 @@ vivo:start rdf:type owl:ObjectProperty .
 ###  http://ontology.tib.eu/gesah/Iconclass_ID
 :Iconclass_ID rdf:type owl:DatatypeProperty ;
               rdfs:subPropertyOf :identifier ;
+              rdfs:domain :Iconography ;
               rdfs:range xsd:string ;
               rdfs:label "ICONCLASS ID"@en-US ,
                          "ICONCLASS-ID"@de-DE .
@@ -1353,7 +1408,7 @@ vivo:start rdf:type owl:ObjectProperty .
 ###  http://ontology.tib.eu/gesah/TGN_ID
 :TGN_ID rdf:type owl:DatatypeProperty ;
         rdfs:subPropertyOf :identifier ;
-        rdfs:domain vivo:GeographicLocation ;
+        rdfs:domain :Depicted_Place ;
         rdfs:range xsd:string ;
         rdfs:label "TGN ID"@en-US ,
                    "TGN-ID"@de-DE .
@@ -1362,7 +1417,11 @@ vivo:start rdf:type owl:ObjectProperty .
 ###  http://ontology.tib.eu/gesah/ULAN_ID
 :ULAN_ID rdf:type owl:DatatypeProperty ;
          rdfs:subPropertyOf :identifier ;
-         rdfs:domain foaf:Person ;
+         rdfs:domain [ rdf:type owl:Class ;
+                       owl:unionOf ( :Depicted_Person
+                                     foaf:Person
+                                   )
+                     ] ;
          rdfs:range xsd:string ;
          rdfs:label "ULAN ID"@en-US ,
                     "ULAN-ID"@de-DE .
@@ -1378,6 +1437,14 @@ vivo:start rdf:type owl:ObjectProperty .
 ###  http://ontology.tib.eu/gesah/Wikidata_ID
 :Wikidata_ID rdf:type owl:DatatypeProperty ;
              rdfs:subPropertyOf :identifier ;
+             rdfs:domain [ rdf:type owl:Class ;
+                           owl:unionOf ( :Cultural_Object
+                                         :Iconography
+                                         :Object_Category_Generic_Term
+                                         :Object_Category_Narrower_Term
+                                         foaf:Agent
+                                       )
+                         ] ;
              rdfs:range xsd:string ;
              rdfs:label "Wikidata ID"@en-US ,
                         "Wikidata-ID"@de-DE .
@@ -1417,6 +1484,20 @@ vivo:start rdf:type owl:ObjectProperty .
 
 ###  http://ontology.tib.eu/gesah/comment
 :comment rdf:type owl:DatatypeProperty ;
+         rdfs:domain [ rdf:type owl:Class ;
+                       owl:unionOf ( ecrm:E35_Title
+                                     :Collection
+                                     :Feature
+                                     :Inscription
+                                     :Mark
+                                     :Object_Category_Generic_Term
+                                     :Object_Category_Narrower_Term
+                                     :Series
+                                     :Watermark
+                                     obo:BFO_0000015
+                                     vivo:Exhibit
+                                   )
+                     ] ;
          rdfs:range rdf:XMLLiteral ;
          rdfs:label "Comment"@en-US ,
                     "Kommentar"@de-DE .
@@ -1441,6 +1522,7 @@ vivo:start rdf:type owl:ObjectProperty .
 
 ###  http://ontology.tib.eu/gesah/description
 :description rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Cultural_Object ;
              rdfs:range rdf:XMLLiteral ;
              rdfs:label "Beschreibung"@de-DE ,
                         "Description"@de-DE .
@@ -1688,19 +1770,7 @@ vivo:start rdf:type owl:ObjectProperty .
 
 ###  http://erlangen-crm.org/170309/E35_Title
 ecrm:E35_Title rdf:type owl:Class ;
-               rdfs:subClassOf :Appellation ,
-                               [ rdf:type owl:Restriction ;
-                                 owl:onProperty :CONA_ID ;
-                                 owl:allValuesFrom xsd:string
-                               ] ,
-                               [ rdf:type owl:Restriction ;
-                                 owl:onProperty :GND_ID ;
-                                 owl:allValuesFrom xsd:string
-                               ] ,
-                               [ rdf:type owl:Restriction ;
-                                 owl:onProperty :comment ;
-                                 owl:allValuesFrom rdf:XMLLiteral
-                               ] ;
+               rdfs:subClassOf :Appellation ;
                rdfs:comment "Title of a cultural object which can be specified by a type of title."@en-US ;
                rdfs:label "Titel"@de-DE ,
                           "Title"@en-US .
@@ -1708,11 +1778,11 @@ ecrm:E35_Title rdf:type owl:Class ;
 
 ###  http://ontology.tib.eu/gesah/Activity
 :Activity rdf:type owl:Class ;
-           rdfs:subClassOf obo:BFO_0000015 ;
-           rdfs:comment "Activities describe the actions and measures a cultural object is subjected to and which affects its existance, its appearance, its condition, or its location."@en-US ;
-           rdfs:label "Activity"@en-US ,
-                      "Aktivität"@de-DE ;
-           rdfs:seeAlso "http://erlangen-crm.org/current/E7_Activity" .
+          rdfs:subClassOf obo:BFO_0000015 ;
+          rdfs:comment "Activities describe the actions and measures a cultural object is subjected to and which affects its existance, its appearance, its condition, or its location."@en-US ;
+          rdfs:label "Activity"@en-US ,
+                     "Aktivität"@de-DE ;
+          rdfs:seeAlso "http://erlangen-crm.org/current/E7_Activity" .
 
 
 ###  http://ontology.tib.eu/gesah/Appellation
@@ -1725,11 +1795,7 @@ ecrm:E35_Title rdf:type owl:Class ;
 
 ###  http://ontology.tib.eu/gesah/Attribution_Type
 :Attribution_Type rdf:type owl:Class ;
-                  rdfs:subClassOf :Feature ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty :AAT_ID ;
-                                    owl:allValuesFrom xsd:string
-                                  ] ;
+                  rdfs:subClassOf :Feature ;
                   rdfs:comment "Specifies the source or reason of the attribution to a creator, producer or editor."@en-US ;
                   rdfs:label "Art der Zuschreibung"@de-DE ,
                              "Attribution type"@en-US .
@@ -1753,11 +1819,7 @@ ecrm:E35_Title rdf:type owl:Class ;
 
 ###  http://ontology.tib.eu/gesah/Collection
 :Collection rdf:type owl:Class ;
-            rdfs:subClassOf obo:IAO_0000030 ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty :comment ;
-                              owl:allValuesFrom rdf:XMLLiteral
-                            ] ;
+            rdfs:subClassOf obo:IAO_0000030 ;
             rdfs:comment "Group of cultural objects intentionally put together by a (former) collector."@en-US ;
             rdfs:label "Collection"@en-US ,
                        "Sammlung"@de-DE .
@@ -1796,23 +1858,7 @@ ecrm:E35_Title rdf:type owl:Class ;
 
 ###  http://ontology.tib.eu/gesah/Cultural_Object
 :Cultural_Object rdf:type owl:Class ;
-                 rdfs:subClassOf obo:IAO_0000030 ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty :CONA_ID ;
-                                   owl:allValuesFrom xsd:string
-                                 ] ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty :GND_ID ;
-                                   owl:allValuesFrom xsd:string
-                                 ] ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty :Wikidata_ID ;
-                                   owl:allValuesFrom xsd:string
-                                 ] ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty :description ;
-                                   owl:allValuesFrom rdf:XMLLiteral
-                                 ] ;
+                 rdfs:subClassOf obo:IAO_0000030 ;
                  rdfs:comment "A physical object, invented, produced or edited by a human being."@en-US ;
                  rdfs:label "Cultural object"@en-US ,
                             "Werk"@de-DE .
@@ -1836,11 +1882,7 @@ ecrm:E35_Title rdf:type owl:Class ;
 
 ###  http://ontology.tib.eu/gesah/Depicted_Object
 :Depicted_Object rdf:type owl:Class ;
-                 rdfs:subClassOf :Iconography ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty :AAT_ID ;
-                                   owl:allValuesFrom xsd:string
-                                 ] ;
+                 rdfs:subClassOf :Iconography ;
                  rdfs:comment "Identifiable object depicted on cultural object (with identifier of GND, Wikidata, CONA, etc.)."@en-US ;
                  rdfs:label "Dargestelltes Objekt"@de-DE ,
                             "Depicted object"@en-US .
@@ -1848,11 +1890,7 @@ ecrm:E35_Title rdf:type owl:Class ;
 
 ###  http://ontology.tib.eu/gesah/Depicted_Person
 :Depicted_Person rdf:type owl:Class ;
-                 rdfs:subClassOf :Iconography ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty :ULAN_ID ;
-                                   owl:allValuesFrom xsd:string
-                                 ] ;
+                 rdfs:subClassOf :Iconography ;
                  rdfs:comment "Identifiable persons (real and legendary) depicted on cultural objects (with identifier of GND, ULAN, Wikidata etc.)."@en-US ;
                  rdfs:label "Dargestellte Person"@de-DE ,
                             "Depicted person"@en-US .
@@ -1872,11 +1910,7 @@ ecrm:E35_Title rdf:type owl:Class ;
 
 ###  http://ontology.tib.eu/gesah/Depiction_Type
 :Depiction_Type rdf:type owl:Class ;
-                rdfs:subClassOf :Feature ,
-                                [ rdf:type owl:Restriction ;
-                                  owl:onProperty :AAT_ID ;
-                                  owl:allValuesFrom xsd:string
-                                ] ;
+                rdfs:subClassOf :Feature ;
                 rdfs:comment "Method of represantion based on formal aspects (plan, section, view, etc.)."@en-US ;
                 rdfs:label "Art der Darstellung"@de-DE ,
                            "Depiction type"@en-US .
@@ -1925,22 +1959,14 @@ ecrm:E35_Title rdf:type owl:Class ;
 
 ###  http://ontology.tib.eu/gesah/Feature
 :Feature rdf:type owl:Class ;
-         rdfs:subClassOf obo:BFO_0000019 ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty :comment ;
-                           owl:allValuesFrom rdf:XMLLiteral
-                         ] ;
+         rdfs:subClassOf obo:BFO_0000019 ;
          rdfs:label "Eigenschaft"@de-DE ,
                     "Feature"@en-US .
 
 
 ###  http://ontology.tib.eu/gesah/Geographic_Assingment
 :Geographic_Assingment rdf:type owl:Class ;
-                       rdfs:subClassOf :Feature ,
-                                       [ rdf:type owl:Restriction ;
-                                         owl:onProperty :AAT_ID ;
-                                         owl:allValuesFrom xsd:string
-                                       ] ;
+                       rdfs:subClassOf :Feature ;
                        rdfs:comment "Includes terms to classify a cultural object to region, landscape (of art), or school (of art)."@en-US ;
                        rdfs:label "Geographic classification"@en-US ,
                                   "Geographische Einordnung"@de-DE .
@@ -1949,19 +1975,7 @@ ecrm:E35_Title rdf:type owl:Class ;
 ###  http://ontology.tib.eu/gesah/Iconography
 :Iconography rdf:type owl:Class ;
              rdfs:subClassOf obo:BFO_0000004 ,
-                             skos:Concept ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty :GND_ID ;
-                               owl:allValuesFrom xsd:string
-                             ] ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty :Iconclass_ID ;
-                               owl:allValuesFrom xsd:string
-                             ] ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty :Wikidata_ID ;
-                               owl:allValuesFrom xsd:string
-                             ] ;
+                             skos:Concept ;
              rdfs:comment "Includes subclasses for various aspects of subject annotation."@en-US ;
              rdfs:label "Iconography"@en-US ,
                         "Ikonographie"@de-DE .
@@ -1977,11 +1991,7 @@ ecrm:E35_Title rdf:type owl:Class ;
 
 ###  http://ontology.tib.eu/gesah/Inscription
 :Inscription rdf:type owl:Class ;
-             rdfs:subClassOf obo:IAO_0000030 ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty :comment ;
-                               owl:allValuesFrom rdf:XMLLiteral
-                             ] ;
+             rdfs:subClassOf obo:IAO_0000030 ;
              rdfs:comment "Includes writings and text of any kind either on a cultural object itself or on the its support."@en-US ;
              rdfs:label "Beschriftung"@de-DE ,
                         "Inscription"@en-US .
@@ -1997,11 +2007,7 @@ ecrm:E35_Title rdf:type owl:Class ;
 
 ###  http://ontology.tib.eu/gesah/Inscription_Type
 :Inscription_Type rdf:type owl:Class ;
-                  rdfs:subClassOf :Feature ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty :AAT_ID ;
-                                    owl:allValuesFrom xsd:string
-                                  ] ;
+                  rdfs:subClassOf :Feature ;
                   rdfs:comment "Describes the content of an inscription (e. g. attribution, signature, idendification, page number, etc)."@en-US ;
                   rdfs:label "Beschriftung Präzisierung"@de-DE ,
                              "Inscription specification"@en-US .
@@ -2042,11 +2048,7 @@ ecrm:E35_Title rdf:type owl:Class ;
 
 ###  http://ontology.tib.eu/gesah/Mark
 :Mark rdf:type owl:Class ;
-      rdfs:subClassOf obo:IAO_0000030 ,
-                      [ rdf:type owl:Restriction ;
-                        owl:onProperty :comment ;
-                        owl:allValuesFrom rdf:XMLLiteral
-                      ] ;
+      rdfs:subClassOf obo:IAO_0000030 ;
       rdfs:comment "Description of stamps and marks of collections of drawings and prints."@en-US ;
       rdfs:label "Collector's mark"@en-US ,
                  "Sammlermarke"@de-DE .
@@ -2062,11 +2064,7 @@ ecrm:E35_Title rdf:type owl:Class ;
 
 ###  http://ontology.tib.eu/gesah/Material
 :Material rdf:type owl:Class ;
-          rdfs:subClassOf :Feature ,
-                          [ rdf:type owl:Restriction ;
-                            owl:onProperty :AAT_ID ;
-                            owl:allValuesFrom xsd:string
-                          ] ;
+          rdfs:subClassOf :Feature ;
           rdfs:comment "Type of material the cultural object is made of."@en-US ;
           rdfs:label "Material"@de-DE ,
                      "Material"@en-US .
@@ -2082,11 +2080,7 @@ ecrm:E35_Title rdf:type owl:Class ;
 
 ###  http://ontology.tib.eu/gesah/Measurement_Specification
 :Measurement_Specification rdf:type owl:Class ;
-                           rdfs:subClassOf :Feature ,
-                                           [ rdf:type owl:Restriction ;
-                                             owl:onProperty :AAT_ID ;
-                                             owl:allValuesFrom xsd:string
-                                           ] ;
+                           rdfs:subClassOf :Feature ;
                            rdfs:comment "Defines which part of the object is measured (sheet, plate or image)."@en-US ;
                            rdfs:label "Maße Präzisierung"@de-DE ,
                                       "Measurement specification"@en-US .
@@ -2111,19 +2105,7 @@ ecrm:E35_Title rdf:type owl:Class ;
 
 ###  http://ontology.tib.eu/gesah/Object_Category_Narrower_Term
 :Object_Category_Narrower_Term rdf:type owl:Class ;
-                               rdfs:subClassOf skos:Concept ,
-                                               [ rdf:type owl:Restriction ;
-                                                 owl:onProperty :AAT_ID ;
-                                                 owl:allValuesFrom xsd:string
-                                               ] ,
-                                               [ rdf:type owl:Restriction ;
-                                                 owl:onProperty :GND_ID ;
-                                                 owl:allValuesFrom xsd:string
-                                               ] ,
-                                               [ rdf:type owl:Restriction ;
-                                                 owl:onProperty :Wikidata_ID ;
-                                                 owl:allValuesFrom xsd:string
-                                               ] ;
+                               rdfs:subClassOf skos:Concept ;
                                rdfs:comment "Terms of a more specific classificaton of cultural object (by subject, and/or section of the physical collection)."@en-US ;
                                rdfs:label "Object category (Narrower term)"@en-US ,
                                           "Sachgruppe (Unterbegriff)"@de-DE .
@@ -2158,11 +2140,7 @@ ecrm:E35_Title rdf:type owl:Class ;
 
 ###  http://ontology.tib.eu/gesah/Preservation_Measure_Specifics
 :Preservation_Measure_Specifics rdf:type owl:Class ;
-                                rdfs:subClassOf :Feature ,
-                                               [ rdf:type owl:Restriction ;
-                                                 owl:onProperty :AAT_ID ;
-                                                 owl:allValuesFrom xsd:string
-                                               ] ;
+                                rdfs:subClassOf :Feature ;
                                 rdfs:comment "Measures undertaken concerning preservation, conservation and restoration of a cultural object"@en-US ;
                                 rdfs:label "Spezifika der Erhaltungsmaßnahme"@de-DE ,
                                            "Treatment specifics"@en-US .
@@ -2197,19 +2175,7 @@ ecrm:E35_Title rdf:type owl:Class ;
 
 ###  http://ontology.tib.eu/gesah/Production
 :Production rdf:type owl:Class ;
-            rdfs:subClassOf :Activity ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty :has_material ;
-                              owl:allValuesFrom :Material
-                            ] ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty :has_type_of_attribution ;
-                              owl:allValuesFrom :Attribution_Type
-                            ] ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty :uses_technique ;
-                              owl:allValuesFrom :Technique
-                            ] ;
+            rdfs:subClassOf :Activity ;
             rdfs:comment "A cultural object is produced by a person at a certain time at a certain place."@en-US ;
             rdfs:label "Herstellung"@de-DE ,
                        "Production"@en-US ;
@@ -2270,11 +2236,7 @@ ecrm:E35_Title rdf:type owl:Class ;
 
 ###  http://ontology.tib.eu/gesah/Role_Type
 :Role_Type rdf:type owl:Class ;
-           rdfs:subClassOf :Feature ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :AAT_ID ;
-                             owl:allValuesFrom xsd:string
-                           ] ;
+           rdfs:subClassOf :Feature ;
            rdfs:comment "Types of roles that agents can be bearer of."@en-US ;
            rdfs:label "Role type"@en-US ,
                       "Rollentyp"@de-DE .
@@ -2291,11 +2253,7 @@ ecrm:E35_Title rdf:type owl:Class ;
 
 ###  http://ontology.tib.eu/gesah/Series
 :Series rdf:type owl:Class ;
-        rdfs:subClassOf obo:IAO_0000030 ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty :comment ;
-                          owl:allValuesFrom rdf:XMLLiteral
-                        ] ;
+        rdfs:subClassOf obo:IAO_0000030 ;
         rdfs:comment "Group of cultural objects composed as such by its inventor, producer or editor."@en-US ;
         rdfs:label "Serie"@de-DE ,
                    "Series"@en-US .
@@ -2303,11 +2261,7 @@ ecrm:E35_Title rdf:type owl:Class ;
 
 ###  http://ontology.tib.eu/gesah/Stylistic_Assignment
 :Stylistic_Assignment rdf:type owl:Class ;
-                      rdfs:subClassOf :Feature ,
-                                      [ rdf:type owl:Restriction ;
-                                        owl:onProperty :AAT_ID ;
-                                        owl:allValuesFrom xsd:string
-                                      ] ;
+                      rdfs:subClassOf :Feature ;
                       rdfs:comment "Terms to classify a cultural object to stilistic criteria and art epochs."@en-US ;
                       rdfs:label "Stilistische Einordnung"@de-DE ,
                                  "Stylistic classification"@en-US .
@@ -2315,11 +2269,7 @@ ecrm:E35_Title rdf:type owl:Class ;
 
 ###  http://ontology.tib.eu/gesah/Technique
 :Technique rdf:type owl:Class ;
-           rdfs:subClassOf :Feature ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :AAT_ID ;
-                             owl:allValuesFrom xsd:string
-                           ] ;
+           rdfs:subClassOf :Feature ;
            rdfs:comment "Technique used in creation, production and/or edition of a cultural object."@en-US ;
            rdfs:label "Technik"@de-DE ,
                       "Technique"@en-US .
@@ -2327,11 +2277,7 @@ ecrm:E35_Title rdf:type owl:Class ;
 
 ###  http://ontology.tib.eu/gesah/Title_Type
 :Title_Type rdf:type owl:Class ;
-            rdfs:subClassOf :Feature ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty :AAT_ID ;
-                              owl:allValuesFrom xsd:string
-                            ] ;
+            rdfs:subClassOf :Feature ;
             rdfs:comment "Types of titles of a cultural object to specify the origin of the title."@en-US ;
             rdfs:label "Title type"@en-US ,
                        "Typ des Titels"@de-DE .
@@ -2339,11 +2285,7 @@ ecrm:E35_Title rdf:type owl:Class ;
 
 ###  http://ontology.tib.eu/gesah/Watermark
 :Watermark rdf:type owl:Class ;
-           rdfs:subClassOf obo:IAO_0000030 ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :comment ;
-                             owl:allValuesFrom rdf:XMLLiteral
-                           ] ;
+           rdfs:subClassOf obo:IAO_0000030 ;
            rdfs:comment "Description of watermarks"@en-US ;
            rdfs:label "Wasserzeichen"@de-DE ,
                       "Watermark"@en-US .
@@ -2365,22 +2307,57 @@ ecrm:E35_Title rdf:type owl:Class ;
                              "Work index entry"@en-US .
 
 
+###  http://purl.obolibrary.org/obo/BFO_0000004
+obo:BFO_0000004 rdf:type owl:Class .
+
+
 ###  http://purl.obolibrary.org/obo/BFO_0000015
 obo:BFO_0000015 rdf:type owl:Class ;
                 rdfs:subClassOf [ rdf:type owl:Restriction ;
                                   owl:onProperty vivo:dateTimeInterval ;
                                   owl:allValuesFrom vivo:DateTimeInterval
-                                ] ,
-                                [ rdf:type owl:Restriction ;
-                                  owl:onProperty :comment ;
-                                  owl:allValuesFrom rdf:XMLLiteral
                                 ] .
 
+
+###  http://purl.obolibrary.org/obo/BFO_0000019
+obo:BFO_0000019 rdf:type owl:Class .
+
+
+###  http://purl.obolibrary.org/obo/BFO_0000023
+obo:BFO_0000023 rdf:type owl:Class .
+
+
+###  http://purl.obolibrary.org/obo/IAO_0000030
+obo:IAO_0000030 rdf:type owl:Class .
 
 
 ###  http://purl.org/NET/c4dm/event.owl#Event
 event:Event rdf:type owl:Class ;
             rdfs:subClassOf obo:BFO_0000015 .
+
+
+###  http://vivoweb.org/ontology/core#DateTimeInterval
+vivo:DateTimeInterval rdf:type owl:Class .
+
+
+###  http://vivoweb.org/ontology/core#DateTimeValue
+vivo:DateTimeValue rdf:type owl:Class .
+
+
+###  http://vivoweb.org/ontology/core#Exhibit
+vivo:Exhibit rdf:type owl:Class .
+
+
+###  http://vivoweb.org/ontology/core#GeographicLocation
+vivo:GeographicLocation rdf:type owl:Class .
+
+
+###  http://vivoweb.org/ontology/core#Relationship
+vivo:Relationship rdf:type owl:Class .
+
+
+###  http://www.w3.org/2004/02/skos/core#Concept
+skos:Concept rdf:type owl:Class .
 
 
 ###  http://www.w3.org/2006/vcard/ns#Name
@@ -2392,15 +2369,19 @@ event:Event rdf:type owl:Class ;
 
 ###  http://xmlns.com/foaf/0.1/Agent
 foaf:Agent rdf:type owl:Class ;
-           rdfs:subClassOf obo:BFO_0000004 ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :GND_ID ;
-                             owl:allValuesFrom xsd:string
-                           ] ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :Wikidata_ID ;
-                             owl:allValuesFrom xsd:string
-                           ] .
+           rdfs:subClassOf obo:BFO_0000004 .
+
+
+###  http://xmlns.com/foaf/0.1/Group
+foaf:Group rdf:type owl:Class .
+
+
+###  http://xmlns.com/foaf/0.1/Organization
+foaf:Organization rdf:type owl:Class .
+
+
+###  http://xmlns.com/foaf/0.1/Person
+foaf:Person rdf:type owl:Class .
 
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
