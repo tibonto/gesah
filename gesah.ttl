@@ -35,11 +35,13 @@
                                  dcterms:title "GESAH Graphic Arts Ontology"@en-US ;
                                  <http://purl.org/vocab/vann/preferredNamespacePrefix> "gesah" ;
                                  <http://usefulinc.com/ns/doap#repository> "https://github.com/tibonto/gesah" ;
+								 <http://www.loc.gov/premis/rdf/v3/documentation> <https://github.com/tibonto/gesah/blob/main/README.md> ; 
+                                 <http://usefulinc.com/ns/doap#bug-database> <https://github.com/tibonto/gesah/issues> ; 
                                  vitro:ontologyPrefixAnnot "gesah" ;
                                  rdfs:label "GESAH Graphic Arts Ontology"@en-US ;
                                  owl:versionInfo "Version from 2024-01-08, added domain unions."@en-US ;
                                  foaf:fundedBy <https://doi.org/10.13039/501100001659> ;
-                                 foaf:mbox "sammlung.haupt"@tib.eu ;
+                                 foaf:mbox "sammlung.haupt@tib.eu" ;
                                  <https://schema.org/audience> "ontology-, software engineers, developers in digitial humanities, art historians, architects, curators, public"@en-US ;
                                  <https://w3id.org/mod#acronym> "gesah" .
 
@@ -312,7 +314,11 @@ foaf:mbox rdf:type owl:AnnotationProperty .
                                  rdfs:subPropertyOf obo:RO_0001025 ;
                                  owl:inverseOf :is_current_holding_institution_of ;
                                  rdfs:domain :Cultural_Object ;
-                                 rdfs:range foaf:Organization .
+								 rdfs:range foaf:Organization ;
+								 rdfs:comment "The relationship connects the cultural object and the institution that keeps it."@en-US ;
+                                 rdfs:label "Current holding institution"@en-US ,
+                                            "aktuell aufbewahrende Institution"@de-DE .
+                                 
 
 
 ###  http://ontology.tib.eu/gesah/has_degree_of_recording
@@ -822,7 +828,11 @@ foaf:mbox rdf:type owl:AnnotationProperty .
 ###  http://ontology.tib.eu/gesah/is_location_of
 :is_location_of rdf:type owl:ObjectProperty ;
                 rdfs:subPropertyOf obo:RO_0001015 ;
-                owl:inverseOf :located_in .
+                owl:inverseOf :located_in  ;
+                rdfs:range foaf:Organization ;
+                rdfs:comment "The relationship connects places with organizations."@en-US ;
+                rdfs:label "Ort von"@de-DE ,
+                           "location of"@en-US .
 
 
 ###  http://ontology.tib.eu/gesah/is_object_category_generic_term_of
