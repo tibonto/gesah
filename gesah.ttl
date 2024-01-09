@@ -1408,7 +1408,11 @@ vivo:start rdf:type owl:ObjectProperty .
 ###  http://ontology.tib.eu/gesah/TGN_ID
 :TGN_ID rdf:type owl:DatatypeProperty ;
         rdfs:subPropertyOf :identifier ;
-        rdfs:domain :Depicted_Place ;
+        rdfs:domain [ rdf:type owl:Class ;
+                      owl:unionOf ( :Depicted_Place
+                                    vivo:GeographicLocation
+                                  )
+                    ] ;
         rdfs:range xsd:string ;
         rdfs:label "TGN ID"@en-US ,
                    "TGN-ID"@de-DE .
