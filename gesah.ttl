@@ -17,7 +17,7 @@
 @base <http://ontology.tib.eu/gesah/> .
 
 <http://ontology.tib.eu/gesah/> rdf:type owl:Ontology ;
-                                 owl:versionIRI <http://ontology.tib.eu/gesah/1.0/2024-01-08/> ;
+                                 owl:versionIRI <http://ontology.tib.eu/gesah/1.0/2024-02-08/> ;
                                  dc:contributor <https://orcid.org/0000-0001-5410-5674> ,
                                                 <https://orcid.org/0000-0001-8530-8917> ,
                                                 <https://orcid.org/0000-0002-9591-3800> ,
@@ -39,7 +39,7 @@
                                  <http://usefulinc.com/ns/doap#bug-database> <https://github.com/tibonto/gesah/issues> ; 
                                  vitro:ontologyPrefixAnnot "gesah" ;
                                  rdfs:label "GESAH Graphic Arts Ontology"@en-US ;
-                                 owl:versionInfo "Version from 2024-01-08, added domain unions."@en-US ;
+                                 owl:versionInfo "Version from 2024-02-08, reassigned the properties gesah:is_attribution_type_of and gesah:has_attribution_type."@en-US ;
                                  foaf:fundedBy <https://doi.org/10.13039/501100001659> ;
                                  foaf:mbox "sammlung.haupt@tib.eu" ;
                                  <https://schema.org/audience> "ontology-, software engineers, developers in digitial humanities, art historians, architects, curators, public"@en-US ;
@@ -675,12 +675,7 @@ foaf:mbox rdf:type owl:AnnotationProperty .
 ###  http://ontology.tib.eu/gesah/has_type_of_attribution
 :has_type_of_attribution rdf:type owl:ObjectProperty ;
                          owl:inverseOf :is_attribution_type_of ;
-                         rdfs:domain [ rdf:type owl:Class ;
-                                       owl:unionOf ( :Creation
-                                                     :Edition
-                                                     :Production
-                                                   )
-                                     ] ;
+                         rdfs:domain obo:BFO_0000023 ;
                          rdfs:range :Attribution_Type ;
                          rdfs:comment "The relationship connects the role with the type of attribution to specify the person's secured or unsecured participation."@en-US ;
                          rdfs:label "Art der Zuschreibung"@de-DE ,
@@ -727,6 +722,7 @@ foaf:mbox rdf:type owl:AnnotationProperty .
 ###  http://ontology.tib.eu/gesah/is_attribution_type_of
 :is_attribution_type_of rdf:type owl:ObjectProperty ;
                         rdfs:domain :Attribution_Type ;
+			rdfs:range obo:BFO_0000023 ;
                         rdfs:comment "The relationship connects the type of attribution, specifiyng the person's secured or unsecured participation, with the role."@en-US ;
                         rdfs:label "Art der Zuschreibung für"@de-DE ,
                                    "attribution type of"@en-US .
