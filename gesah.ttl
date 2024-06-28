@@ -23,7 +23,7 @@
                                                 <https://orcid.org/0000-0002-9591-3800> ,
                                                 <https://orcid.org/0000-0003-2499-7741> ,
                                                 <https://orcid.org/0000-0003-3679-145X> ;
-                                 dcterms:created "2023-05-15"^^xsd:dateTime ;
+                                 dcterms:created "2023-05-15T00:00:00Z"^^xsd:dateTime ;
                                  dcterms:creator <https://orcid.org/0000-0001-5319-0221> ,
                                                  <https://orcid.org/0000-0001-8127-2988> ;
                                  dcterms:description "The GESAH Graphic Arts Ontology is designed for the inventory, classification and structured description of works on paper."@en-US ;
