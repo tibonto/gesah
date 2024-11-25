@@ -17,7 +17,7 @@
 @base <http://ontology.tib.eu/gesah/> .
 
 <http://ontology.tib.eu/gesah/> rdf:type owl:Ontology ;
-                                 owl:versionIRI <http://ontology.tib.eu/gesah/1.0/2024-02-08/> ;
+                                 owl:versionIRI <http://ontology.tib.eu/gesah/1.0/2024-11-25/> ;
                                  dc:contributor <https://orcid.org/0000-0001-5410-5674> ,
                                                 <https://orcid.org/0000-0001-8530-8917> ,
                                                 <https://orcid.org/0000-0002-9591-3800> ,
@@ -34,14 +34,14 @@
                                                  <https://github.com/tibonto/dfgfo/410-01> ;
                                  dcterms:title "GESAH Graphic Arts Ontology"@en-US ;
                                  <http://purl.org/vocab/vann/preferredNamespacePrefix> "gesah" ;
+                                 <http://usefulinc.com/ns/doap#bug-database> <https://github.com/tibonto/gesah/issues> ;
                                  <http://usefulinc.com/ns/doap#repository> "https://github.com/tibonto/gesah" ;
-								 <http://www.loc.gov/premis/rdf/v3/documentation> <https://github.com/tibonto/gesah/blob/main/README.md> ; 
-                                 <http://usefulinc.com/ns/doap#bug-database> <https://github.com/tibonto/gesah/issues> ; 
                                  vitro:ontologyPrefixAnnot "gesah" ;
+                                 <http://www.loc.gov/premis/rdf/v3/documentation> <https://github.com/tibonto/gesah/blob/main/README.md> ;
                                  rdfs:label "GESAH Graphic Arts Ontology"@en-US ;
-                                 owl:versionInfo "Version from 2024-02-08, reassigned the properties gesah:is_attribution_type_of and gesah:has_attribution_type."@en-US ;
+                                 owl:versionInfo "Version from 2024-11-25, added gesah:Composite_Volume and gesah:order_number; depricated gesah:Depicted_Person; added new properties for localization of depicted objects; extended domain of gesah:depicted_in and range of gesah:depicts."@en-US ;
                                  foaf:fundedBy <https://doi.org/10.13039/501100001659> ;
-                                 foaf:mbox "sammlung.haupt@tib.eu" ;
+                                 foaf:mbox "sammlung.haupt"@tib.eu ;
                                  <https://schema.org/audience> "ontology-, software engineers, developers in digitial humanities, art historians, architects, curators, public"@en-US ;
                                  <https://w3id.org/mod#acronym> "gesah" .
 
@@ -85,12 +85,20 @@ dcterms:title rdf:type owl:AnnotationProperty .
 <http://purl.org/vocab/vann/preferredNamespacePrefix> rdf:type owl:AnnotationProperty .
 
 
+###  http://usefulinc.com/ns/doap#bug-database
+<http://usefulinc.com/ns/doap#bug-database> rdf:type owl:AnnotationProperty .
+
+
 ###  http://usefulinc.com/ns/doap#repository
 <http://usefulinc.com/ns/doap#repository> rdf:type owl:AnnotationProperty .
 
 
 ###  http://vitro.mannlib.cornell.edu/ns/vitro/0.7#ontologyPrefixAnnot
 vitro:ontologyPrefixAnnot rdf:type owl:AnnotationProperty .
+
+
+###  http://www.loc.gov/premis/rdf/v3/documentation
+<http://www.loc.gov/premis/rdf/v3/documentation> rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.w3.org/2002/07/owl#versionInfo
@@ -188,11 +196,26 @@ foaf:mbox rdf:type owl:AnnotationProperty .
 ###  http://ontology.tib.eu/gesah/depicted_in
 :depicted_in rdf:type owl:ObjectProperty ;
              owl:inverseOf :depicts ;
-             rdfs:domain :Iconography ;
+             rdfs:domain [ rdf:type owl:Class ;
+                           owl:unionOf ( :Iconography
+                                         vivo:GeographicLocation
+                                         foaf:Organization
+                                         foaf:Person
+                                       )
+                         ] ;
              rdfs:range :Cultural_Object ;
              rdfs:comment "The relationship connects subjects or concepts of iconography with a cultural object."@en-US ;
              rdfs:label "dargestellt in"@de-DE ,
                         "depicted in"@en-US .
+
+
+###  http://ontology.tib.eu/gesah/depicted_object_localisied_in
+:depicted_object_localisied_in rdf:type owl:ObjectProperty ;
+                               owl:inverseOf :localisation_of_depicted_object ;
+                               rdfs:domain :Cultural_Object ;
+                               rdfs:range vivo:GeographicLocation ;
+                               rdfs:label "dargestelltes Objekt lokalisiert in"@de-DE ,
+                                          "depicted object localizied in"@en-US .
 
 
 ###  http://ontology.tib.eu/gesah/depiction_type_of
@@ -208,7 +231,13 @@ foaf:mbox rdf:type owl:AnnotationProperty .
 ###  http://ontology.tib.eu/gesah/depicts
 :depicts rdf:type owl:ObjectProperty ;
          rdfs:domain :Cultural_Object ;
-         rdfs:range :Iconography ;
+         rdfs:range [ rdf:type owl:Class ;
+                      owl:unionOf ( :Iconography
+                                    vivo:GeographicLocation
+                                    foaf:Organization
+                                    foaf:Person
+                                  )
+                    ] ;
          rdfs:comment "The relationship connects a cultural object to its depicted subject and iconography."@en-US ;
          rdfs:label "Subject"@en-US ,
                     "Werkinhalt"@de-DE .
@@ -314,11 +343,10 @@ foaf:mbox rdf:type owl:AnnotationProperty .
                                  rdfs:subPropertyOf obo:RO_0001025 ;
                                  owl:inverseOf :is_current_holding_institution_of ;
                                  rdfs:domain :Cultural_Object ;
-								 rdfs:range foaf:Organization ;
-								 rdfs:comment "The relationship connects the cultural object and the institution that keeps it."@en-US ;
+                                 rdfs:range foaf:Organization ;
+                                 rdfs:comment "The relationship connects the cultural object and the institution that keeps it."@en-US ;
                                  rdfs:label "Current holding institution"@en-US ,
                                             "aktuell aufbewahrende Institution"@de-DE .
-                                 
 
 
 ###  http://ontology.tib.eu/gesah/has_degree_of_recording
@@ -722,7 +750,7 @@ foaf:mbox rdf:type owl:AnnotationProperty .
 ###  http://ontology.tib.eu/gesah/is_attribution_type_of
 :is_attribution_type_of rdf:type owl:ObjectProperty ;
                         rdfs:domain :Attribution_Type ;
-			rdfs:range obo:BFO_0000023 ;
+                        rdfs:range obo:BFO_0000023 ;
                         rdfs:comment "The relationship connects the type of attribution, specifiyng the person's secured or unsecured participation, with the role."@en-US ;
                         rdfs:label "Art der Zuschreibung für"@de-DE ,
                                    "attribution type of"@en-US .
@@ -824,7 +852,7 @@ foaf:mbox rdf:type owl:AnnotationProperty .
 ###  http://ontology.tib.eu/gesah/is_location_of
 :is_location_of rdf:type owl:ObjectProperty ;
                 rdfs:subPropertyOf obo:RO_0001015 ;
-                owl:inverseOf :located_in  ;
+                owl:inverseOf :located_in ;
                 rdfs:range foaf:Organization ;
                 rdfs:comment "The relationship connects places with organizations."@en-US ;
                 rdfs:label "Ort von"@de-DE ,
@@ -1005,6 +1033,14 @@ foaf:mbox rdf:type owl:AnnotationProperty .
            rdfs:comment "The relationship is used to represent the life data of the person involved."@en-US ;
            rdfs:label "Lebensdaten"@de-DE ,
                       "life data"@en-US .
+
+
+###  http://ontology.tib.eu/gesah/localisation_of_depicted_object
+:localisation_of_depicted_object rdf:type owl:ObjectProperty ;
+                                 rdfs:domain vivo:GeographicLocation ;
+                                 rdfs:range :Cultural_Object ;
+                                 rdfs:label "Lokalisierung des dargestellten Objekts"@de-DE ,
+                                            "localisation of depicted object"@en-US .
 
 
 ###  http://ontology.tib.eu/gesah/located_in
@@ -1366,6 +1402,7 @@ vivo:start rdf:type owl:ObjectProperty .
                                     :Iconography
                                     :Object_Category_Generic_Term
                                     :Object_Category_Narrower_Term
+                                    vivo:GeographicLocation
                                     foaf:Agent
                                   )
                     ] ;
@@ -1675,6 +1712,12 @@ vivo:start rdf:type owl:ObjectProperty .
                               "width"@en-US .
 
 
+###  http://ontology.tib.eu/gesah/order_number
+:order_number rdf:type owl:DatatypeProperty ;
+              rdfs:label "Reihenfolge"@de-DE ,
+                         "order number"@en-US .
+
+
 ###  http://ontology.tib.eu/gesah/plate_state
 :plate_state rdf:type owl:DatatypeProperty ;
              rdfs:domain :Cultural_Object ;
@@ -1825,6 +1868,14 @@ ecrm:E35_Title rdf:type owl:Class ;
                        "Sammlung"@de-DE .
 
 
+###  http://ontology.tib.eu/gesah/Composite_Volume
+:Composite_Volume rdf:type owl:Class ;
+                  rdfs:subClassOf :Cultural_Object ;
+                  rdfs:label "Composite volume"@en-US ,
+                             "Sammelband"@de-DE ;
+                  rdfs:seeAlso "http://vocab.getty.edu/aat/300391488" .
+
+
 ###  http://ontology.tib.eu/gesah/Conservation
 :Conservation rdf:type owl:Class ;
               rdfs:subClassOf :Preservation_Activity ;
@@ -1893,7 +1944,8 @@ ecrm:E35_Title rdf:type owl:Class ;
                  rdfs:subClassOf :Iconography ;
                  rdfs:comment "Identifiable persons (real and legendary) depicted on cultural objects (with identifier of GND, ULAN, Wikidata etc.)."@en-US ;
                  rdfs:label "Dargestellte Person"@de-DE ,
-                            "Depicted person"@en-US .
+                            "Depicted person"@en-US ;
+                 owl:deprecated "true"^^xsd:boolean .
 
 
 ###  http://ontology.tib.eu/gesah/Depicted_Place
