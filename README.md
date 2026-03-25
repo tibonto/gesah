@@ -27,7 +27,7 @@ Probably questions that can be answered by GESAH Graphic Arts Ontology:
 - Which drawings and prints depict the subject Adam and Eve? 
 
 ## Versions
-* [2023-05-15](https://github.com/tibonto/gesah/releases/tag/v2023-05-15)
+* [See the releases](https://github.com/tibonto/gesah/releases)
 
 ## Cite this ontology
 An ontology paper is in preparation. Until then you can cite this ontology as:
