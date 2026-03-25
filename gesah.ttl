@@ -17,7 +17,7 @@
 @base <http://ontology.tib.eu/gesah/> .
 
 <http://ontology.tib.eu/gesah/> rdf:type owl:Ontology ;
-                                 owl:versionIRI <http://ontology.tib.eu/gesah/1.0/2024-11-25/> ;
+                                 owl:versionIRI <http://ontology.tib.eu/gesah/1.0/2025-11-19/> ;
                                  dc:contributor <https://orcid.org/0000-0001-5410-5674> ,
                                                 <https://orcid.org/0000-0001-8530-8917> ,
                                                 <https://orcid.org/0000-0002-9591-3800> ,
@@ -39,7 +39,7 @@
                                  vitro:ontologyPrefixAnnot "gesah" ;
                                  <http://www.loc.gov/premis/rdf/v3/documentation> <https://github.com/tibonto/gesah/blob/main/README.md> ;
                                  rdfs:label "GESAH Graphic Arts Ontology"@en-US ;
-                                 owl:versionInfo "Version from 2024-11-25, added gesah:Composite_Volume and gesah:order_number; depricated gesah:Depicted_Person; added new properties for localization of depicted objects; extended domain of gesah:depicted_in and range of gesah:depicts."@en-US ;
+                                 owl:versionInfo "Version from 2025-11-19, added a new class  and properties for the representation of master craftsman seals."@en-US ;
                                  foaf:fundedBy <https://doi.org/10.13039/501100001659> ;
                                  foaf:mbox "sammlung.haupt@tib.eu" ;
                                  <https://schema.org/audience> "ontology-, software engineers, developers in digitial humanities, art historians, architects, curators, public"@en-US ;
@@ -680,6 +680,16 @@ foaf:mbox rdf:type owl:AnnotationProperty .
                           "Rollentyp"@de-DE .
 
 
+###  http://ontology.tib.eu/gesah/has_seal_designation
+:has_seal_designation rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf vivo:relatedBy ;
+                      owl:inverseOf :seal_designation_of ;
+                      rdfs:domain :Cultural_Object ;
+                      rdfs:range :Seal_Designation ;
+                      rdfs:label "Seal"@en-US ,
+                                 "Siegel"@de-DE .
+
+
 ###  http://ontology.tib.eu/gesah/has_stylistic_assignment
 :has_stylistic_assignment rdf:type owl:ObjectProperty ;
                           owl:inverseOf :stylistic_assignment_of ;
@@ -1209,6 +1219,24 @@ foaf:mbox rdf:type owl:AnnotationProperty .
                            "Right owned by"@en-US .
 
 
+###  http://ontology.tib.eu/gesah/seal_designation_of
+:seal_designation_of rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf vivo:relates ;
+                     rdfs:domain :Seal_Designation ;
+                     rdfs:range :Cultural_Object ;
+                     rdfs:label "Seal designation of"@en-US ,
+                                "Siegelkennzeichnung von"@de-DE .
+
+
+###  http://ontology.tib.eu/gesah/seal_used_in
+:seal_used_in rdf:type owl:ObjectProperty ;
+              owl:inverseOf :uses_seal ;
+              rdfs:domain :Master_Craftsman_Seal ;
+              rdfs:range :Seal_Designation ;
+              rdfs:label "Siegel von"@de-DE ,
+                         "seal used in"@en-US .
+
+
 ###  http://ontology.tib.eu/gesah/series_for
 :series_for rdf:type owl:ObjectProperty ;
             rdfs:domain :Series ;
@@ -1258,6 +1286,13 @@ foaf:mbox rdf:type owl:AnnotationProperty .
             rdfs:comment "The relationships connects the context node of type gesah:Right_Ownership with a right or a license"@en-US ;
             rdfs:label "uses right"@en-US ,
                        "verwendet Recht"@de-DE .
+
+###  http://ontology.tib.eu/gesah/uses_seal
+:uses_seal rdf:type owl:ObjectProperty ;
+           rdfs:domain :Seal_Designation ;
+           rdfs:range :Master_Craftsman_Seal ;
+           rdfs:label "Siegel"@de-DE ,
+                      "uses seal"@en-US .
 
 
 ###  http://ontology.tib.eu/gesah/uses_technique
@@ -1529,6 +1564,7 @@ vivo:start rdf:type owl:ObjectProperty .
                                      :Mark
                                      :Object_Category_Generic_Term
                                      :Object_Category_Narrower_Term
+                                     :Master_Craftsman_Seal 
                                      :Series
                                      :Watermark
                                      obo:BFO_0000015
@@ -1748,6 +1784,32 @@ vivo:start rdf:type owl:ObjectProperty .
                      rdfs:range rdfs:Literal ;
                      rdfs:label "Publication"@en-US ,
                                 "Publikation"@de-DE .
+
+
+###  http://ontology.tib.eu/gesah/seal_ID
+:seal_ID rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :identifier ;
+         rdfs:domain :Master_Craftsman_Seal ;
+         rdfs:range xsd:string ;
+         rdfs:label "Siegel-ID"@de-DE ,
+                    "seal ID"@en-US .
+
+
+###  http://ontology.tib.eu/gesah/seal_URL
+:seal_URL rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :URL ;
+          rdfs:domain :Master_Craftsman_Seal ;
+          rdfs:range xsd:anyURI ;
+          rdfs:label "URL des Siegels"@de-DE ,
+                     "URL of the seal"@en-US .
+
+
+###  http://ontology.tib.eu/gesah/seal_location
+:seal_location rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Seal_Designation ;
+               rdfs:range xsd:string ;
+               rdfs:label "Anbringungsort des Siegels"@de-DE ,
+                          "seal location"@en-US .
 
 
 ###  http://ontology.tib.eu/gesah/secondary_literature
@@ -2114,6 +2176,13 @@ ecrm:E35_Title rdf:type owl:Class ;
                              "Mark designation"@en-US .
 
 
+###  http://ontology.tib.eu/gesah/Master_Craftsman_Seal
+:Master_Craftsman_Seal rdf:type owl:Class ;
+                       rdfs:subClassOf obo:IAO_0000030 ;
+                       rdfs:label "Master craftsman seal"@en-US ,
+                                  "Meistersiegel"@de-DE .
+
+
 ###  http://ontology.tib.eu/gesah/Material
 :Material rdf:type owl:Class ;
           rdfs:subClassOf :Feature ;
@@ -2301,6 +2370,13 @@ ecrm:E35_Title rdf:type owl:Class ;
       rdfs:label "Seal"@en-US ,
                  "Siegel"@de-DE ;
       rdfs:seeAlso "http://vocab.getty.edu/aat/300028877"^^xsd:anyURI .
+
+
+###  http://ontology.tib.eu/gesah/Seal_Designation
+:Seal_Designation rdf:type owl:Class ;
+                  rdfs:subClassOf vivo:Relationship ;
+                  rdfs:label "Kennzeichnung mit Siegel"@de-DE ,
+                             "Seal Designation"@en-US .
 
 
 ###  http://ontology.tib.eu/gesah/Series
