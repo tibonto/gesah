@@ -17,7 +17,7 @@
 @base <http://ontology.tib.eu/gesah/> .
 
 <http://ontology.tib.eu/gesah/> rdf:type owl:Ontology ;
-                                 owl:versionIRI <http://ontology.tib.eu/gesah/1.0/2025-11-19/> ;
+                                 owl:versionIRI <http://ontology.tib.eu/gesah/1.0/2026-03-25/> ;
                                  dc:contributor <https://orcid.org/0000-0001-5410-5674> ,
                                                 <https://orcid.org/0000-0001-8530-8917> ,
                                                 <https://orcid.org/0000-0002-9591-3800> ,
@@ -39,7 +39,7 @@
                                  vitro:ontologyPrefixAnnot "gesah" ;
                                  <http://www.loc.gov/premis/rdf/v3/documentation> <https://github.com/tibonto/gesah/blob/main/README.md> ;
                                  rdfs:label "GESAH Graphic Arts Ontology"@en-US ;
-                                 owl:versionInfo "Version from 2025-11-19, added a new class  and properties for the representation of master craftsman seals."@en-US ;
+                                 owl:versionInfo "Version from 2026-03-25, removed the property gesah:life_data."@en-US ;
                                  foaf:fundedBy <https://doi.org/10.13039/501100001659> ;
                                  foaf:mbox "sammlung.haupt@tib.eu" ;
                                  <https://schema.org/audience> "ontology-, software engineers, developers in digitial humanities, art historians, architects, curators, public"@en-US ;
@@ -1033,16 +1033,6 @@ foaf:mbox rdf:type owl:AnnotationProperty .
              rdfs:seeAlso "http://terminology.lido-schema.org/lido00613" ,
                           "http://vocab.getty.edu/aat/300010292" ,
                           "http://vocab.getty.edu/aat/300078814" .
-
-
-###  http://ontology.tib.eu/gesah/life_data
-:life_data rdf:type owl:ObjectProperty ;
-           rdfs:subPropertyOf vivo:dateTimeInterval ;
-           rdfs:domain foaf:Person ;
-           rdfs:range vivo:DateTimeInterval ;
-           rdfs:comment "The relationship is used to represent the life data of the person involved."@en-US ;
-           rdfs:label "Lebensdaten"@de-DE ,
-                      "life data"@en-US .
 
 
 ###  http://ontology.tib.eu/gesah/localisation_of_depicted_object
